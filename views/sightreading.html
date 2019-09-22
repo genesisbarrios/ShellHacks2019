@@ -11,22 +11,188 @@
             document.getElementById("canvas").style.backgroundImage = "url('../images/staff.png')";
             
             var button = document.getElementById('show_button');
+            var alerts = document.getElementById('alerts');
             button.addEventListener('click', function(e){
-                if(button.style.display === "none") {
-                    button.style.display = "block";
-                } else {
-                    button.style.display = "none";
+                button.classList.add("invisible");
+                startGame();
+                if(button.innerHTML == "Play Again"){
+                    drawNotes();
+                    alerts.style.left = "480px";
+                    alerts.style.top = "280px";
+                    alerts.style.fontSize = "3em"; 
                 }
+            });
 
+//todo time out functions one in between eac that checks for pitch
+
+            function startGame(){
+                var countdown = document.getElementById('countdown');
+                var alerts = document.getElementById('alerts');
+                var note = document.getElementById('note');
+                var audio = new Audio("metronome-24b.wav");
+                var startingPitch = new Audio('e.wav');
+                var note1correctness, note2correctness, note3correctness, note4correctness;
+                var note5correctness, note6correctness, note7correctness, note8correctness;
+                
+                // Countdown
+                alerts.innerHTML = 'Starting Pitch';
+                alerts.classList.remove("invisible");
+                startingPitch.play();
                 drawNotes();
 
-                var countdown = document.getElementById('countdown');
-                countdown.classList.remove("invisible");
-            });
-          
+                window.setTimeout(function(){
+                    alerts.classList.add("invisible");
+                    countdown.classList.remove("invisible");
+                    countdown.innerHTML = '4';
+                    audio.play();
+                    toggleLiveInput();
+                }, 1490);
+
+                window.setTimeout(function(){  
+                    countdown.innerHTML = "3";
+                    audio.play();
+                }, 2235);
+
+                window.setTimeout(function(){   
+                    countdown.innerHTML = "2";
+                    audio.play();
+                }, 2980);
+
+                window.setTimeout(function(){ 
+                    countdown.innerHTML = "1";
+                    audio.play();
+                }, 3725);
+                // Countdown End
+
+                // Beats Time Intervals, Pitch Checking
+                window.setTimeout(function(){ 
+                    countdown.classList.add("invisible");
+                    audio.play();
+                    if(note.innerHTML == 'E'){
+                        note1correctness = 1;
+                        var note1 = new Path.Circle(new Point(220, 190), 18);
+                        note1.fillColor = '#56e39f';
+                    }else{
+                        note1correctness = 0;
+                        var note1 = new Path.Circle(new Point(220, 190), 18);
+                        note1.fillColor = '#ef6f6c';
+                    }
+                }, 4470);
+
+                window.setTimeout(function(){  
+                    audio.play();
+                    if(note.innerHTML == 'G'){
+                        note2correctness = 1;
+                        var note2 = new Path.Circle(new Point(340, 150), 18);
+                        note2.fillColor = '#56e39f';
+                    }else{
+                        note2correctness = 0;
+                        var note2 = new Path.Circle(new Point(340, 150), 18);
+                        note2.fillColor = '#ef6f6c';
+                    }
+                }, 5215);
+
+                window.setTimeout(function(){   
+                    audio.play();
+                    if(note.innerHTML == 'C'){
+                        note3correctness = 1;
+                        var note3 = new Path.Circle(new Point(460, 100), 18);
+                        note3.fillColor = '#56e39f';
+                    }else{
+                        note3correctness = 0;
+                        var note3 = new Path.Circle(new Point(460, 100), 18);
+                        note3.fillColor = '#ef6f6c';
+                    }
+                }, 5960);
+
+                window.setTimeout(function(){ 
+                    audio.play();
+                    if(note.innerHTML == 'C'){
+                        note4correctness = 1;
+                        var note4 = new Path.Circle(new Point(570, 100), 18);
+                        note4.fillColor = '#56e39f';
+                    }else{
+                        note4correctness = 0;
+                        var note4 = new Path.Circle(new Point(570, 100), 18);
+                        note4.fillColor = '#ef6f6c';
+                    }
+                }, 6705);
+
+                window.setTimeout(function(){ 
+                    audio.play();
+                    if(note.innerHTML == 'G'){
+                        note5correctness = 1;
+                        var note5 = new Path.Circle(new Point(220, 400), 18);
+                        note5.fillColor = '#56e39f';
+                    }else{
+                        note5correctness = 0;
+                        var note5 = new Path.Circle(new Point(220, 400), 18);
+                        note5.fillColor = '#ef6f6c';
+
+                    }
+                }, 7450);
+
+                window.setTimeout(function(){  
+                    audio.play();
+                    if(note.innerHTML == 'C'){
+                        note6correctness = 1;
+                        var note6 = new Path.Circle(new Point(340, 345), 18);
+                        note6.fillColor = '#56e39f';
+                    }else{
+                        note6correctness = 0;
+                        var note6 = new Path.Circle(new Point(340, 345), 18);
+                        note6.fillColor = '#ef6f6c';
+                    }
+                }, 8195);
+
+                window.setTimeout(function(){   
+                    audio.play();
+                    if(note.innerHTML == 'B'){
+                        note7correctness = 1;
+                        var note7 = new Path.Circle(new Point(460, 365), 18);
+                        note7.fillColor = '#56e39f';
+                    }else{
+                        note7correctness = 0;
+                        var note7 = new Path.Circle(new Point(460, 365), 18);
+                        note7.fillColor = '#ef6f6c';
+                    }
+                }, 8940);
+
+                window.setTimeout(function(){ 
+                    audio.play();
+                    if(note.innerHTML == 'C'){
+                        note8correctness = 1;
+                        var note8 = new Path.Circle(new Point(570, 345), 18);
+                        note8.fillColor = '#56e39f';  
+                    }else{
+                        note8correctness = 0;
+                        var note8 = new Path.Circle(new Point(570, 345), 18);
+                        note8.fillColor = '#ef6f6c'; 
+                    }
+                }, 9685);
+                // Beats, Pitch Checking End
+
+                // Results and Reset
+                 window.setTimeout(function(){ 
+                    button.classList.remove("invisible");
+                    alerts.classList.remove("invisible");
+                    alerts.style.left = "420px"; 
+                    alerts.style.fontSize = "2.5em";
+                    alerts.style.top = "290px";
+                    button.innerHTML = "Play Again";
+                    var average = (note1correctness + note2correctness + note3correctness + note4correctness + note5correctness + note6correctness + note7correctness + note8correctness) / 8;
+                    if(average <= 50){
+                        alerts.innerHTML = "Keep Practicing! " + average * 100 + "% Accuracy";
+                    }else if(average < 80){
+                        alerts.innerHTML = "Good Job! " + average * 100 + "% Accuracy";
+                    }else if(average >= 80){
+                        alerts.innerHTML = "Congratulations! " + average * 100 + "% Accuracy";
+                    }
+                }, 10430);
+            }
             
             function drawNotes(){
-                //top staff
+                // Top staff
                 <!-- e -->
                 var note1 = new Path.Circle(new Point(220, 190), 18);
                 note1.fillColor = 'black';
@@ -67,7 +233,7 @@
                 });
                 stem4.fillColor = 'black';
                 
-                //bottom staff
+                // Bottom staff
                 <!-- g -->
                 var note5 = new Path.Circle(new Point(220, 400), 18);
                 note5.fillColor = 'black';
@@ -119,12 +285,23 @@
             #countdown{
                 position: absolute;
                 z-index: 1;
-                color:red;
+                color: #fa824c;
                 left: 620px; 
                 top: 260px; 
                 width:200px; 
                 height:100px;
                 font-size:5em;
+            }
+
+            #alerts{
+                position: absolute;
+                z-index: 1;
+                color: #fa824c;
+                left: 480px; 
+                top: 280px; 
+                width:650px; 
+                height:100px;
+                font-size:3em;
             }
         </style>
 	</head>
@@ -134,39 +311,40 @@
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link">Home<span class="sr-only">(current)</span></a></li>
+                <li class="nav-item"><a href="index.html" class="nav-link">Home<span class="sr-only">(current)</span></a></li>
                 <li class="nav-item"><a href="sightreading.html" class="nav-link">Sightreading</a></li>
-                <li class="nav-item"><a href="game.html" tabindex="-1" class="nav-link disabled">Jumping Game</a></li>
+                <!--<li class="nav-item"><a href="game.html" tabindex="-1" class="nav-link">Jumping Game</a></li>-->
             </ul>
             </div>
         </div>
         </nav>  
+        
         <div class="container-canvas">
             <canvas id="canvas" width="700" height="500"></div>
         </div>
         
-        <h1 id="countdown" class="invisible">4</h1>
-
+        <h1 id="countdown" class="invisible">countdown</h1>
+        <h1 id="alerts" class="invisible">alert</h1>
         <!--Button-->
         <div class="container">
             <div class="row">
             <div class="col text-center">
-                <div id="show_button">
-                    <button class="btn btn-dark">Start</button>
+                <div>
+                    <button id="show_button" class="btn btn-dark">Start</button>
                 </div>
             </div>
             </div>
         </div>
 
-        <button onclick="toggleLiveInput()">use live input</button>
-        <div id="detector" class="vague">
-			<div class="pitch"><span id="pitch">--</span>Hz</div>
-			<div class="note"><span id="note">--</span></div>   
-			<canvas id="output" width=300 height=42></canvas>
-			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+        <button class="invisible" onclick="toggleLiveInput()">use live input</button>
+        <div id="detector" class="vague invisible">
+			<div class="pitch invisible"><span id="pitch">--</span>Hz</div>
+			<div class="note invisible"><span id="note">--</span></div>   
+			<canvas class="invisible" id="output" width=300 height=42></canvas>
+			<div id="detune"><span id="detune_amt" class="invisible">--</span><span class="invisible" id="flat">cents &#9837;</span><span class="invisible" id="sharp">cents &#9839;</span></div>
 		</div>
 
 		<!-- just used for debugging -->
-		<canvas id="waveform" width="512" height="256"></canvas>
+		<!--<canvas id="waveform" width="512" height="256"></canvas>-->
     </body>
 </html>

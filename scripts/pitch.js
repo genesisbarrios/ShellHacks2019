@@ -35,7 +35,8 @@ var detectorElem,
 	pitchElem,
 	noteElem,
 	detuneElem,
-	detuneAmount;
+	detuneAmount,
+	note;
 
 window.onload = function() {
 	audioContext = new AudioContext();
@@ -347,8 +348,7 @@ function updatePitch( time ) {
 	 	detectorElem.className = "confident";
 	 	pitch = ac;
 	 	pitchElem.innerText = Math.round( pitch ) ;
-		var note =  noteFromPitch( pitch );
-		console.log(note%12);
+		note =  noteFromPitch( pitch );
 		noteElem.innerHTML = noteStrings[note%12];
 		var detune = centsOffFromPitch( pitch, note );
 		if (detune == 0 ) {
@@ -362,7 +362,6 @@ function updatePitch( time ) {
 			detuneAmount.innerHTML = Math.abs( detune );
 		}
 	}
-
 	if (!window.requestAnimationFrame)
 		window.requestAnimationFrame = window.webkitRequestAnimationFrame;
 	rafID = window.requestAnimationFrame( updatePitch );
