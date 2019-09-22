@@ -9,103 +9,141 @@
         <script type="text/paperscript" canvas="canvas">
 
             document.getElementById("canvas").style.backgroundImage = "url('../images/staff.png')";
-
-            //top staff
-            <!-- e -->
-            var note1 = new Path.Circle(new Point(220, 190), 18);
-            note1.fillColor = 'black';
-            var stem1 = new Path.Rectangle({
-                point: [230, 100],
-                size: [6, 90],
-                strokeColor: 'black'
-            });
-            stem1.fillColor = 'black';
-
-            <!-- g -->
-            var note2 = new Path.Circle(new Point(340, 150), 18);
-            note2.fillColor = 'black';
-            var stem2 = new Path.Rectangle({
-                point: [350, 50],
-                size: [6, 100],
-                strokeColor: 'black'
-            });
-            stem2.fillColor = 'black';
-
-            <!-- c -->
-            var note3 = new Path.Circle(new Point(460, 100), 18);
-            note3.fillColor = 'black';
-            var stem3 = new Path.Rectangle({
-                point: [445, 100],
-                size: [6, 100],
-                strokeColor: 'black'
-            });
-            stem3.fillColor = 'black';
-
-            <!-- c -->
-            var note4 = new Path.Circle(new Point(570, 100), 18);
-            note4.fillColor = 'black';
-            var stem4 = new Path.Rectangle({
-                point: [555, 100],
-                size: [6, 100],
-                strokeColor: 'black'
-            });
-            stem4.fillColor = 'black';
             
-            //bottom staff
-            <!-- g -->
-            var note5 = new Path.Circle(new Point(220, 400), 18);
-            note5.fillColor = 'black';
-            var stem5 = new Path.Rectangle({
-                point: [230, 300],
-                size: [6, 100],
-                strokeColor: 'black'
-            });
-            stem5.fillColor = 'black';
+            var button = document.getElementById('show_button');
+            button.addEventListener('click', function(e){
+                console.log('event listener');
+                if(button.style.display === "none") {
+                    button.style.display = "block";
+                } else {
+                    button.style.display = "none";
+                }
 
-            <!-- c -->
-            var note6 = new Path.Circle(new Point(340, 345), 18);
-            note6.fillColor = 'black';
-            var stem6 = new Path.Rectangle({
-                point: [325, 350],
-                size: [6, 100],
-                strokeColor: 'black'
+                drawNotes();
             });
-            stem6.fillColor = 'black';
+          
+            
+            function drawNotes(){
+                //top staff
+                <!-- e -->
+                var note1 = new Path.Circle(new Point(220, 190), 18);
+                note1.fillColor = 'black';
+                var stem1 = new Path.Rectangle({
+                    point: [230, 100],
+                    size: [6, 90],
+                    strokeColor: 'black'
+                });
+                stem1.fillColor = 'black';
 
-            <!-- b -->
-            var note7 = new Path.Circle(new Point(460, 365), 18);
-            note7.fillColor = 'black';
-             var stem6 = new Path.Rectangle({
-                point: [445, 357],
-                size: [6, 100],
-                strokeColor: 'black'
-            });
-            stem6.fillColor = 'black';
+                <!-- g -->
+                var note2 = new Path.Circle(new Point(340, 150), 18);
+                note2.fillColor = 'black';
+                var stem2 = new Path.Rectangle({
+                    point: [350, 50],
+                    size: [6, 100],
+                    strokeColor: 'black'
+                });
+                stem2.fillColor = 'black';
 
-            <!-- c -->
-            var note8 = new Path.Circle(new Point(570, 345), 18);
-            note8.fillColor = 'black';  
-            var stem8 = new Path.Rectangle({
-                point: [555, 350],
-                size: [6, 100],
-                strokeColor: 'black'
-            });
-            stem8.fillColor = 'black';
-        
+                <!-- c -->
+                var note3 = new Path.Circle(new Point(460, 100), 18);
+                note3.fillColor = 'black';
+                var stem3 = new Path.Rectangle({
+                    point: [445, 100],
+                    size: [6, 100],
+                    strokeColor: 'black'
+                });
+                stem3.fillColor = 'black';
+
+                <!-- c -->
+                var note4 = new Path.Circle(new Point(570, 100), 18);
+                note4.fillColor = 'black';
+                var stem4 = new Path.Rectangle({
+                    point: [555, 100],
+                    size: [6, 100],
+                    strokeColor: 'black'
+                });
+                stem4.fillColor = 'black';
+                
+                //bottom staff
+                <!-- g -->
+                var note5 = new Path.Circle(new Point(220, 400), 18);
+                note5.fillColor = 'black';
+                var stem5 = new Path.Rectangle({
+                    point: [230, 300],
+                    size: [6, 100],
+                    strokeColor: 'black'
+                });
+                stem5.fillColor = 'black';
+
+                <!-- c -->
+                var note6 = new Path.Circle(new Point(340, 345), 18);
+                note6.fillColor = 'black';
+                var stem6 = new Path.Rectangle({
+                    point: [325, 350],
+                    size: [6, 100],
+                    strokeColor: 'black'
+                });
+                stem6.fillColor = 'black';
+
+                <!-- b -->
+                var note7 = new Path.Circle(new Point(460, 365), 18);
+                note7.fillColor = 'black';
+                var stem6 = new Path.Rectangle({
+                    point: [445, 357],
+                    size: [6, 100],
+                    strokeColor: 'black'
+                });
+                stem6.fillColor = 'black';
+
+                <!-- c -->
+                var note8 = new Path.Circle(new Point(570, 345), 18);
+                note8.fillColor = 'black';  
+                var stem8 = new Path.Rectangle({
+                    point: [555, 350],
+                    size: [6, 100],
+                    strokeColor: 'black'
+                });
+                stem8.fillColor = 'black';
+            }
         </script>
         <style>
             .container-canvas{
                 margin: 0 auto;
-                margin-top:3%;
                 display: block;
                 width: 700px;
             }
         </style>
 	</head>
 	<body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+            <div class="container"><a href="index.html" class="navbar-brand"> <b>Music Theory Trainer</b></a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="#" class="nav-link">Home<span class="sr-only">(current)</span></a></li>
+                <li class="nav-item"><a href="sightreading.html" class="nav-link">Sightreading</a></li>
+                <li class="nav-item"><a href="game.html" tabindex="-1" class="nav-link disabled">Jumping Game</a></li>
+            </ul>
+            </div>
+        </div>
+        </nav>  
         <div class="container-canvas">
             <canvas id="canvas" width="700" height="500"></div>
         </div>
+
+        <!--Button-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <div class="container">
+            <div class="row">
+            <div class="col text-center">
+                <div id="show_button">
+                    <button class="btn btn-dark">Start</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
         <button onclick="toggleLiveInput()">use live input</button>
         <div id="detector" class="vague">
 			<div class="pitch"><span id="pitch">--</span>Hz</div>
@@ -116,29 +154,5 @@
 
 		<!-- just used for debugging -->
 		<canvas id="waveform" width="512" height="256"></canvas>
-
-        <!--Button-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-        <div class="container">
-            <div class="row">
-            <div class="col text-center">
-                    <div id="show_button">
-                            <button onclick = "hideshow()" class = "btn btn-dark">Start</button>
-                          </div>
-            </div>
-            </div>
-        </div>
-        
-        <!--Hide the button-->
-        <script type="text/javascript">
-            function hideshow() {
-                var button = document.getElementById('show_button')
-                if(button.style.display === "none") {
-                    button.style.display = "block";
-                } else {
-                    button.style.display = "none";
-                }
-            }   
-        </script>
     </body>
 </html>
