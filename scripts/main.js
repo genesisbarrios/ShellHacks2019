@@ -2,9 +2,9 @@ var game = new Phaser.Game(700, 500, Phaser.AUTO, 'game_div');
 
 var mainState = {
     preload: function() { 
-        game.load.image('character', 'assets/character.png'); 
-        game.load.image('pipe', 'assets/pipe.png');
-        game.load.image('staff', 'assets/staff.png')
+        game.load.image('character', '../assets/character.png'); 
+        game.load.image('pipe', '../assets/pipe.png');
+        game.load.image('staff', '../assets/staff.png')
     },
 
     create: function() {      
