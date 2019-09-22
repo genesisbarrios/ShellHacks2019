@@ -116,5 +116,29 @@
 
 		<!-- just used for debugging -->
 		<canvas id="waveform" width="512" height="256"></canvas>
+
+        <!--Button-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <div class="container">
+            <div class="row">
+            <div class="col text-center">
+                    <div id="show_button">
+                            <button onclick = "hideshow()" class = "btn btn-dark">Start</button>
+                          </div>
+            </div>
+            </div>
+        </div>
+        
+        <!--Hide the button-->
+        <script type="text/javascript">
+            function hideshow() {
+                var button = document.getElementById('show_button')
+                if(button.style.display === "none") {
+                    button.style.display = "block";
+                } else {
+                    button.style.display = "none";
+                }
+            }   
+        </script>
     </body>
 </html>

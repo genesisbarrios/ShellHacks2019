@@ -311,7 +311,6 @@ function updatePitch( time ) {
 	var cycles = new Array;
 	analyser.getFloatTimeDomainData( buf );
 	var ac = autoCorrelate( buf, audioContext.sampleRate );
-	console.log(ac);
 	// TODO: Paint confidence meter on canvasElem here.
 
 	if (DEBUGCANVAS) {  // This draws the current waveform, useful for debugging
@@ -348,7 +347,8 @@ function updatePitch( time ) {
 	 	detectorElem.className = "confident";
 	 	pitch = ac;
 	 	pitchElem.innerText = Math.round( pitch ) ;
-	 	var note =  noteFromPitch( pitch );
+		var note =  noteFromPitch( pitch );
+		console.log(note%12);
 		noteElem.innerHTML = noteStrings[note%12];
 		var detune = centsOffFromPitch( pitch, note );
 		if (detune == 0 ) {
