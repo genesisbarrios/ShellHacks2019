@@ -4,10 +4,11 @@
         <title>SightReading</title>
         <style src="style.css"></style>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="../scripts/pitch.js"></script>
         <script type="text/javascript" src="../scripts/paper-full.js"></script>
         <script type="text/paperscript" canvas="canvas">
 
-             document.getElementById("canvas").style.backgroundImage = "url('../images/staff.png')";
+            document.getElementById("canvas").style.backgroundImage = "url('../images/staff.png')";
 
             //top staff
             <!-- e -->
@@ -105,5 +106,15 @@
         <div class="container-canvas">
             <canvas id="canvas" width="700" height="500"></div>
         </div>
+        <button onclick="toggleLiveInput()">use live input</button>
+        <div id="detector" class="vague">
+			<div class="pitch"><span id="pitch">--</span>Hz</div>
+			<div class="note"><span id="note">--</span></div>   
+			<canvas id="output" width=300 height=42></canvas>
+			<div id="detune"><span id="detune_amt">--</span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+		</div>
+
+		<!-- just used for debugging -->
+		<canvas id="waveform" width="512" height="256"></canvas>
     </body>
 </html>

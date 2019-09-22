@@ -18,6 +18,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+//545ms
+
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 var audioContext = null;
@@ -115,31 +117,31 @@ function gotStream(stream) {
     updatePitch();
 }
 
-// function toggleOscillator() {
-//     if (isPlaying) {
-//         //stop playing and return
-//         sourceNode.stop( 0 );
-//         sourceNode = null;
-//         analyser = null;
-//         isPlaying = false;
-// 		if (!window.cancelAnimationFrame)
-// 			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
-//         window.cancelAnimationFrame( rafID );
-//         return "play oscillator";
-//     }
-//     sourceNode = audioContext.createOscillator();
+function toggleOscillator() {
+    if (isPlaying) {
+        //stop playing and return
+        sourceNode.stop( 0 );
+        sourceNode = null;
+        analyser = null;
+        isPlaying = false;
+		if (!window.cancelAnimationFrame)
+			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
+        window.cancelAnimationFrame( rafID );
+        return "play oscillator";
+    }
+    sourceNode = audioContext.createOscillator();
 
-//     analyser = audioContext.createAnalyser();
-//     analyser.fftSize = 2048;
-//     sourceNode.connect( analyser );
-//     analyser.connect( audioContext.destination );
-//     sourceNode.start(0);
-//     isPlaying = true;
-//     isLiveInput = false;
-//     updatePitch();
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+    sourceNode.connect( analyser );
+    analyser.connect( audioContext.destination );
+    sourceNode.start(0);
+    isPlaying = true;
+    isLiveInput = false;
+    updatePitch();
 
-//     return "stop";
-// }
+    return "stop";
+}
 
 function toggleLiveInput() {
     if (isPlaying) {
@@ -166,34 +168,34 @@ function toggleLiveInput() {
         }, gotStream);
 }
 
-// function togglePlayback() {
-//     if (isPlaying) {
-//         //stop playing and return
-//         sourceNode.stop( 0 );
-//         sourceNode = null;
-//         analyser = null;
-//         isPlaying = false;
-// 		if (!window.cancelAnimationFrame)
-// 			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
-//         window.cancelAnimationFrame( rafID );
-//         return "start";
-//     }
+function togglePlayback() {
+    if (isPlaying) {
+        //stop playing and return
+        sourceNode.stop( 0 );
+        sourceNode = null;
+        analyser = null;
+        isPlaying = false;
+		if (!window.cancelAnimationFrame)
+			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
+        window.cancelAnimationFrame( rafID );
+        return "start";
+    }
 
-//     sourceNode = audioContext.createBufferSource();
-//     sourceNode.buffer = theBuffer;
-//     sourceNode.loop = true;
+    sourceNode = audioContext.createBufferSource();
+    sourceNode.buffer = theBuffer;
+    sourceNode.loop = true;
 
-//     analyser = audioContext.createAnalyser();
-//     analyser.fftSize = 2048;
-//     sourceNode.connect( analyser );
-//     analyser.connect( audioContext.destination );
-//     sourceNode.start( 0 );
-//     isPlaying = true;
-//     isLiveInput = false;
-//     updatePitch();
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+    sourceNode.connect( analyser );
+    analyser.connect( audioContext.destination );
+    sourceNode.start( 0 );
+    isPlaying = true;
+    isLiveInput = false;
+    updatePitch();
 
-//     return "stop";
-// }
+    return "stop";
+}
 
 var rafID = null;
 var tracks = null;
@@ -309,6 +311,7 @@ function updatePitch( time ) {
 	var cycles = new Array;
 	analyser.getFloatTimeDomainData( buf );
 	var ac = autoCorrelate( buf, audioContext.sampleRate );
+	console.log(ac);
 	// TODO: Paint confidence meter on canvasElem here.
 
 	if (DEBUGCANVAS) {  // This draws the current waveform, useful for debugging
